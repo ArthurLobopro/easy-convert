@@ -1,0 +1,49 @@
+name: Publish Extension
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'package.json'
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22.x"
+
+      - name: Install Dependencies
+        run: npm i
+
+      - name: Install vsce
+        run: npm i -g @vscode/vsce
+
+        
+      - name: Publish Extension on VSCODE
+        run: vsce publish -p ${{secrets.PUBLISH_TOKEN}} --skip-duplicate
+      
+      # - name: Install Open VSX
+      #   run: npm install --global ovsx
+
+      # - name: Get Version
+      #   run: |
+      #     VERSION=$(node -e "console.log(require('./package.json').version)")
+      #     echo "version=$VERSION" >> $GITHUB_ENV
+
+      # - name: Build Again
+      #   run: vsce package
+
+      # - name: Publish on Open VSX
+      #   run: |
+      #     ls *.vsix
+      #     ovsx publish "easy-codesnap-$VERSION.vsix"
+      #   env:
+      #     OVSX_PAT: ${{secrets.OPEN_VSX_TOKEN}}
+      #     VERSION: ${{ env.version }}
