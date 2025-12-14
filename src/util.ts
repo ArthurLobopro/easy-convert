@@ -20,3 +20,18 @@ export function getValidatedEditorAndSelection() {
 
   return { editor, selection };
 }
+
+export function toCamelCase(str: string) {
+  return str.toLowerCase().replace(/_+([a-z0-9])/g, (_, char) => char.toUpperCase());
+}
+
+export function toPascalCase(str: string) {
+  return str[0].toUpperCase() + toCamelCase(str.slice(1));
+}
+
+export function toSnakeCase(str: string) {
+  return str
+    .replace(/([a-z0-9])([A-Z])/g, "$1_$2")
+    .replace(/([A-Z]+)([A-Z][a-z])/g, "$1_$2")
+    .toLowerCase();
+}

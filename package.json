@@ -4,7 +4,7 @@
   "description": "Extension that provides utilities for converting names",
   "version": "0.0.1",
   "engines": {
-    "vscode": "^1.107.0"
+    "vscode": "^1.90.0"
   },
   "categories": [
     "Other"
@@ -28,6 +28,14 @@
       {
         "command": "easy-convert.toSnakeCase",
         "title": "Convert to Snake Case"
+      },
+      {
+        "command": "easy-convert.toPascalCase",
+        "title": "Convert to Pascal Case"
+      },
+      {
+        "command": "easy-convert.toCamelCase",
+        "title": "Convert to Camel Case"
       }
     ],
     "menus": {
@@ -48,6 +56,14 @@
         },
         {
           "command": "easy-convert.toSnakeCase",
+          "when": "editorHasSelection && !editorHasMultipleSelections"
+        },
+        {
+          "command": "easy-convert.toCamelCase",
+          "when": "editorHasSelection && !editorHasMultipleSelections"
+        },
+        {
+          "command": "easy-convert.toPascalCase",
           "when": "editorHasSelection && !editorHasMultipleSelections"
         }
       ]
@@ -71,7 +87,7 @@
   "devDependencies": {
     "@biomejs/biome": "^2.3.8",
     "@types/node": "22.x",
-    "@types/vscode": "^1.107.0",
+    "@types/vscode": "^1.90.0",
     "esbuild": "^0.27.1",
     "npm-run-all": "^4.1.5",
     "typescript": "^5.9.3"
