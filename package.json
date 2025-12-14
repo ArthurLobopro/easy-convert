@@ -1,7 +1,7 @@
 {
-  "name": "var-utils",
-  "displayName": "var-utils",
-  "description": "Extension that provides utilities for var names (or any text)",
+  "name": "easy-convert",
+  "displayName": "Easy Convert",
+  "description": "Extension that provides utilities for converting names",
   "version": "0.0.1",
   "engines": {
     "vscode": "^1.107.0"
@@ -9,23 +9,55 @@
   "categories": [
     "Other"
   ],
-  "activationEvents": [],
+  "publisher": "ArthurLobo",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
   "main": "./dist/extension.js",
+  "icon": "icon.png",
   "contributes": {
     "commands": [
       {
-        "command": "var-utils.toUpperCase",
+        "command": "easy-convert.toUpperCase",
         "title": "Convert to Upper Case"
+      },
+      {
+        "command": "easy-convert.toLowerCase",
+        "title": "Convert to Lower Case"
+      },
+      {
+        "command": "easy-convert.toSnakeCase",
+        "title": "Convert to Snake Case"
       }
     ],
     "menus": {
       "editor/context": [
         {
-          "command": "var-utils.toUpperCase",
+          "submenu": "easy-convert.submenu",
+          "when": "editorHasSelection && !editorHasMultipleSelections"
+        }
+      ],
+      "easy-convert.submenu": [
+        {
+          "command": "easy-convert.toUpperCase",
+          "when": "editorHasSelection && !editorHasMultipleSelections"
+        },
+        {
+          "command": "easy-convert.toLowerCase",
+          "when": "editorHasSelection && !editorHasMultipleSelections"
+        },
+        {
+          "command": "easy-convert.toSnakeCase",
           "when": "editorHasSelection && !editorHasMultipleSelections"
         }
       ]
-    }
+    },
+    "submenus": [
+      {
+        "id": "easy-convert.submenu",
+        "label": "Easy Convert"
+      }
+    ]
   },
   "scripts": {
     "vscode:prepublish": "npm run package",
