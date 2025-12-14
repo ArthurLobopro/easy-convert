@@ -1,11 +1,45 @@
 {
   "name": "easy-convert",
-  "displayName": "Easy Convert",
-  "description": "Extension that provides utilities for converting names",
   "version": "0.0.1",
+  "description": "Extension that provides utilities for converting names",
+  "keywords": [
+    "converty",
+    "utility",
+    "easy-convert"
+  ],
+  "homepage": "https://github.com/ArthurLobopro/easy-convert#readme",
+  "bugs": {
+    "url": "https://github.com/ArthurLobopro/easy-convert/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ArthurLobopro/easy-convert.git"
+  },
+  "license": "MIT",
+  "author": "Arthur Lobo",
+  "type": "commonjs",
+  "main": "./dist/extension.js",
+  "scripts": {
+    "vscode:prepublish": "npm run package",
+    "compile": "node esbuild.js",
+    "watch": "npm-run-all -p watch:*",
+    "watch:esbuild": "node esbuild.js --watch",
+    "watch:tsc": "tsc --noEmit --watch --project tsconfig.json",
+    "package": "node esbuild.js --production",
+    "pretest": "npm run compile-tests && npm run compile && npm run lint"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^2.3.8",
+    "@types/node": "22.x",
+    "@types/vscode": "^1.90.0",
+    "esbuild": "^0.27.1",
+    "npm-run-all": "^4.1.5",
+    "typescript": "^5.9.3"
+  },
   "engines": {
     "vscode": "^1.90.0"
   },
+  "displayName": "Easy Convert",
   "categories": [
     "Other"
   ],
@@ -13,7 +47,6 @@
   "activationEvents": [
     "onStartupFinished"
   ],
-  "main": "./dist/extension.js",
   "icon": "icon.png",
   "contributes": {
     "commands": [
@@ -74,22 +107,5 @@
         "label": "Easy Convert"
       }
     ]
-  },
-  "scripts": {
-    "vscode:prepublish": "npm run package",
-    "compile": "node esbuild.js",
-    "watch": "npm-run-all -p watch:*",
-    "watch:esbuild": "node esbuild.js --watch",
-    "watch:tsc": "tsc --noEmit --watch --project tsconfig.json",
-    "package": "node esbuild.js --production",
-    "pretest": "npm run compile-tests && npm run compile && npm run lint"
-  },
-  "devDependencies": {
-    "@biomejs/biome": "^2.3.8",
-    "@types/node": "22.x",
-    "@types/vscode": "^1.90.0",
-    "esbuild": "^0.27.1",
-    "npm-run-all": "^4.1.5",
-    "typescript": "^5.9.3"
   }
 }
